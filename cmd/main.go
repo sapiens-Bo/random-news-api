@@ -9,6 +9,7 @@ import (
 
 	"github.com/sapiens-Bo/random-news-api/config"
 	"github.com/sapiens-Bo/random-news-api/internal/api/everything"
+	"github.com/sapiens-Bo/random-news-api/internal/bot/telegram"
 )
 
 func main() {
@@ -42,4 +43,9 @@ func main() {
 	}
 
 	fmt.Printf("Status: %s\nTotal:%v\nFirst article: %s\n", response.Status, response.Total, response.Articles[0].FormatShow())
+}
+
+func StartBot() {
+	cfg := config.MustLoad()
+	tgClient := telegram.New(cfg.TgBotHost, cfg.TgAPI)
 }
