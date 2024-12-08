@@ -36,5 +36,10 @@ func main() {
 		log.Fatalf("ошибка чтения тела ответа: %v", err)
 	}
 
-	fmt.Println(string(body))
+	response, err := everything.NewResponse(body)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Printf("Status: %s\nTotal:%v\nFirst article: %s\n", response.Status, response.Total, response.Articles[0].FormatShow())
 }
